@@ -16,7 +16,7 @@ class _DemoState extends State<Demo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Database with API'),
+        title: Text('Database with API practice'),
       ),
       //add Future Builder to get contacts
       body: FutureBuilder<List<Contact>>(
