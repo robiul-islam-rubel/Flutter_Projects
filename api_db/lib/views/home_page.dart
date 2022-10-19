@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../controller/database/helper.dart';
 import '../models/contacts.dart';
+import 'package:http/http.dart' as http;
 import 'add_contacts.dart';
 
 class Demo extends StatefulWidget {
@@ -16,7 +17,27 @@ class _DemoState extends State<Demo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Database with API practice'),
+        title:  Row(
+          children: [
+            Text("Api with DB"),
+            SizedBox(width: 50,),
+            ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.tealAccent)
+              ),
+
+                child: Text("Get from DB"),
+                onPressed: ()
+                {
+                  readContacts();
+                  print("I am here");
+
+                }
+
+            )
+
+          ],
+        ),
       ),
       //add Future Builder to get contacts
       body: FutureBuilder<List<Contact>>(
@@ -96,5 +117,20 @@ class _DemoState extends State<Demo> {
         },
       ),
     );
+  }
+  Future<List<Null>> readContacts() async {
+
+    print("RUbel");
+    var url = "https://634e48b9f34e1ed826874c92.mockapi.io/rubel/contacts";
+    //final response = await https.get(Uri.parse('url'));
+    final response = await http
+        .get(Uri.parse(url));
+
+    return (response.body as List).map((contact) {
+
+      //print('Inserting $employee');
+      DBHelper.createContacts(Contact.fromJson(contact));
+    }).toList();
+
   }
 }

@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 import '../controller/database/helper.dart';
 import '../models/contacts.dart';
+import 'package:http/http.dart' as http;
 
 
 
@@ -45,7 +48,7 @@ class _AddContactsState extends State<AddContacts> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Contacts'),
+        title: Text("API"),
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
           onPressed: () => Navigator.of(context).pop(false),
@@ -202,5 +205,35 @@ class _AddContactsState extends State<AddContacts> {
       print("Error occured in post");
     }
   }
+
+  Future fetchData() async
+  {
+    try
+        {
+          final response =  await http.get(Uri.parse(url));
+          final jsonData = jsonDecode(response.body);
+          if(response.statusCode==200)
+            {
+             return Contact.fromJson(jsonData);
+            }
+        }
+        catch(err)
+    {
+      print("Error Occured");
+    }
+  }
+  Future<List<Null>> readContacts() async {
+    //var url = "https://634e48b9f34e1ed826874c92.mockapi.io/rubel/contacts";
+    //final response = await https.get(Uri.parse('url'));
+    final response = await http
+        .get(Uri.parse(url));
+
+    return (response.body as List).map((contact) {
+
+      //print('Inserting $employee');
+      DBHelper.createContacts(Contact.fromJson(contact));
+    }).toList();
+  }
+
 }
 
