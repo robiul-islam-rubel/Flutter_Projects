@@ -9,6 +9,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  String email="rubel.cse532@gmail.com";
+  String pass="rubelcse47";
   TextEditingController emailaddress = TextEditingController();
   TextEditingController userpassword = TextEditingController();
   final _formkey = GlobalKey<FormState>();
@@ -41,17 +43,25 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 15.0),
                 child: TextFormField(
-                  controller: emailaddress,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Email Address',
-                      hintText: 'Please enter email addres'),
-                  validator: (val)
+                    controller: emailaddress,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Email Address',
+                        hintText: 'Please enter email addres'),
+                    validator: (val)
                     {
                       if(val==null||val.isEmpty)
-                        {
-                          return "Enter your email";
-                        }
+                      {
+                        return "Enter your email";
+                      }
+                      String p = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+
+                      RegExp regExp = new RegExp(p);
+
+                      if(!regExp.hasMatch(val)){
+                        return "Enter valid email address";
+
+                      }
                       return null;
                     }
                 ),
@@ -62,19 +72,25 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 15.0),
                 child: TextFormField(
-                  controller: userpassword,
-                  obscureText: true,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Password',
-                      hintText: 'Please Enter Password'),
+                    controller: userpassword,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Password',
+                        hintText: 'Please Enter Password'),
 
                     validator: (val)
                     {
+
                       if(val==null||val.isEmpty)
                       {
                         return "Enter user password";
                       }
+                      if(val!="rubelcse47")
+                        {
+                          return "Enter valid password";
+                        }
+
                       return null;
                     }
 
@@ -90,15 +106,20 @@ class _LoginPageState extends State<LoginPage> {
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(20.0)),
                 child: ElevatedButton(
-                  child: Text(
-                    'Signin',
-                    style: TextStyle(color: Colors.white, fontSize: 20.0),
-                  ),
-                  onPressed: () {
+                    child: Text(
+                      'SignIn',
+                      style: TextStyle(color: Colors.white, fontSize: 20.0),
+                    ),
+                    onPressed: () {
 
-                    if(_formkey.currentState!.validate())
+                      if(_formkey.currentState!.validate())
                       {
-                        Navigator.pushNamed(context, '/homepage');
+                        if(emailaddress.text.toString()==email&&userpassword.text.toString()==pass)
+                          {
+                            Navigator.pushNamed(context, '/LMSDashboardScreen');
+                          }
+
+
                         //return Text("Login Success");
                       }
                     }
@@ -111,5 +132,14 @@ class _LoginPageState extends State<LoginPage> {
       ),
 
     );
+  }
+  bool isEmail(String em) {
+    // print("Email fun called");
+
+    String p = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+
+    RegExp regExp = new RegExp(p);
+
+    return regExp.hasMatch(em);
   }
 }

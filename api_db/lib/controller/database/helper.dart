@@ -22,7 +22,8 @@ class DBHelper {
     final sql = '''CREATE TABLE contacts(
       id INTEGER PRIMARY KEY,
       name TEXT,
-      contact TEXT
+      email TEXT
+   
     )''';
     //sqflite is only support num, string, and unit8List format
     //please refer to package doc for more details

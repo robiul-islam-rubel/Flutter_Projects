@@ -1,4 +1,8 @@
+import 'package:api_db/views/add_contacts.dart';
+import 'package:api_db/views/dashboard_screen.dart';
 import 'package:api_db/views/home_page.dart';
+import 'package:api_db/views/login/login_screen.dart';
+import 'package:api_db/views/register/registration_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +16,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Demo(),
+      initialRoute: '/registration',
+      routes: {
+        '/registration':(context)=>ShoppingRegisterScreen(),
+        '/LoginPage':(context)=>LoginPage(),
+        '/LMSDashboardScreen':(context)=>LMSDashboardScreen()
+      },
+      //home: LMSDashboardScreen(),
     );
   }
 }

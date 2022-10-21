@@ -3,9 +3,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
+
 import '../controller/database/helper.dart';
 import '../models/contacts.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter/services.dart';
+import 'package:email_validator/email_validator.dart';
 
 
 
@@ -22,8 +25,10 @@ class AddContacts extends StatefulWidget {
 
 class _AddContactsState extends State<AddContacts> {
   //for TextField
-  final _nameController = TextEditingController();
-  final _contactController = TextEditingController();
+  TextEditingController _nameController = TextEditingController();
+
+  TextEditingController _emailaddress = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -32,7 +37,9 @@ class _AddContactsState extends State<AddContacts> {
     //instead of create new contact
     if (widget.contact != null) {
       _nameController.text = widget.contact!.name;
-      _contactController.text = widget.contact!.contact;
+      _emailaddress.text = widget.contact!.email;
+
+
     }
     super.initState();
   }
@@ -40,7 +47,8 @@ class _AddContactsState extends State<AddContacts> {
   @override
   void dispose() {
     _nameController.dispose();
-    _contactController.dispose();
+    _emailaddress.dispose();
+
     super.dispose();
   }
 
@@ -65,7 +73,9 @@ class _AddContactsState extends State<AddContacts> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 TextFormField(
+                  inputFormatters:[FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]'))],
                   decoration: InputDecoration(
+
                     prefixIcon: Icon(Icons.account_circle_rounded),
                     labelText: "Name",
                     hintText: "Enter your name",
@@ -87,20 +97,25 @@ class _AddContactsState extends State<AddContacts> {
                 TextFormField(
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.contacts),
-                      labelText: "Contact",
-                      hintText: "Enter your mobile number",
+                      labelText: "Email",
+                      hintText: "Enter your email address",
                     border: OutlineInputBorder()
                   ),
-                  controller: _contactController,
+                  controller: _emailaddress,
                     validator: (val)
                     {
                       if(val==null||val.isEmpty)
                       {
-                        return "Enter contact";
+                        return "Enter email";
                       }
+
                     }
 
                 ),
+
+
+
+                SizedBox(height: 20,),
 
 
                 //_buildTextField(_nameController, 'Name'),
@@ -118,19 +133,21 @@ class _AddContactsState extends State<AddContacts> {
                     //according to id
                     //else create a new contact
                     //postData();
-                    if(_formKey.currentState!.validate()) {
+                    if(_formKey.currentState!.validate()&&isEmail(_emailaddress.text.toString())) {
                     if (widget.contact != null) {
                     await DBHelper.updateContacts(Contact(
                     id: widget.contact!.id, //have to add id here
                     name: _nameController.text,
-                    contact: _contactController.text,
+                    email: _emailaddress.text,
+
                     ));
 
                     Navigator.of(context).pop(true);
                     } else {
                     await DBHelper.createContacts(Contact(
                     name: _nameController.text,
-                    contact: _contactController.text,
+                      email: _emailaddress.text,
+
                     ));
 
                     Navigator.of(context).pop(true);
@@ -142,26 +159,30 @@ class _AddContactsState extends State<AddContacts> {
                 ),
                 ElevatedButton(
                   onPressed: () async{
-                    if(_formKey.currentState!.validate()) {
+                    if(_formKey.currentState!.validate()&&isEmail(_emailaddress.text.toString())) {
+
                       postData();
                       if (widget.contact != null) {
                         await DBHelper.updateContacts(Contact(
                           id: widget.contact!.id, //have to add id here
                           name: _nameController.text,
-                          contact: _contactController.text,
+                          email: _emailaddress.text,
+
                         ));
 
                         Navigator.of(context).pop(true);
                       } else {
                         await DBHelper.createContacts(Contact(
                           name: _nameController.text,
-                          contact: _contactController.text,
+                          email: _emailaddress.text,
+
                         )
                         );
 
                         Navigator.of(context).pop(true);
                       }
                     }
+
                   },
 
 
@@ -196,7 +217,8 @@ class _AddContactsState extends State<AddContacts> {
     try {
       final response = await post(Uri.parse(url), body: {
         "name": _nameController.text,
-        "contact":_contactController.text,
+        "email": _emailaddress.text,
+
 
       }
       );
@@ -234,6 +256,16 @@ class _AddContactsState extends State<AddContacts> {
       DBHelper.createContacts(Contact.fromJson(contact));
     }).toList();
   }
+  bool isEmail(String em) {
+   // print("Email fun called");
+
+    String p = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+
+    RegExp regExp = new RegExp(p);
+
+    return regExp.hasMatch(em);
+  }
+
 
 }
 

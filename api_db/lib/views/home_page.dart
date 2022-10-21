@@ -21,20 +21,7 @@ class _DemoState extends State<Demo> {
           children: [
             Text("Api with DB"),
             SizedBox(width: 50,),
-            ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.tealAccent)
-              ),
 
-                child: Text("Get from DB"),
-                onPressed: ()
-                {
-                  readContacts();
-                  print("I am here");
-
-                }
-
-            )
 
           ],
         ),
@@ -68,8 +55,9 @@ class _DemoState extends State<Demo> {
             children: snapshot.data!.map((contacts) {
               return Center(
                 child: ListTile(
-                  title: Text(contacts.name),
-                  subtitle: Text(contacts.contact),
+
+                  title: Text(contacts.name,style: TextStyle(color: Colors.redAccent),),
+                  subtitle: Text(contacts.email,style: TextStyle(color: Colors.green),),
                   trailing: IconButton(
                     icon: Icon(Icons.delete),
                     onPressed: () async {
@@ -87,7 +75,8 @@ class _DemoState extends State<Demo> {
                           contact: Contact(
                             id: contacts.id,
                             name: contacts.name,
-                            contact: contacts.contact,
+                            email: contacts.email,
+
                           ),
                         )));
 
@@ -120,7 +109,7 @@ class _DemoState extends State<Demo> {
   }
   Future<List<Null>> readContacts() async {
 
-    print("RUbel");
+    //print("RUbel");
     var url = "https://634e48b9f34e1ed826874c92.mockapi.io/rubel/contacts";
     //final response = await https.get(Uri.parse('url'));
     final response = await http

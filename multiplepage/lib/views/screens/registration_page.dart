@@ -8,7 +8,8 @@ import 'dart:convert';
 import 'package:intl/intl.dart';
 
 class Registration extends StatefulWidget {
-  const Registration({Key? key}) : super(key: key);
+  const Registration({Key? key, this.contact}) : super(key: key);
+  final contact;
 
   @override
   State<Registration> createState() => _RegistrationState();
@@ -51,7 +52,7 @@ class _RegistrationState extends State<Registration> {
                 padding: EdgeInsets.symmetric(horizontal: 15.0),
                 child: TextFormField(
                     controller: _namecontroller,
-                    obscureText: true,
+
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.account_circle_rounded),
                         border: OutlineInputBorder(),
@@ -74,7 +75,7 @@ class _RegistrationState extends State<Registration> {
                 padding: EdgeInsets.symmetric(horizontal: 15.0),
                 child: TextFormField(
                     controller: _mobliecontroler,
-                    obscureText: true,
+
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.mobile_friendly),
                         border: OutlineInputBorder(),
@@ -164,7 +165,8 @@ class _RegistrationState extends State<Registration> {
                         postData();
                         //return Text("Login Success");
 
-                        await DBHelper.createContacts(Contact(
+                        await DBHelper.createContacts(
+                            Contact(
                           name: _namecontroller.text,
                           mobile: _mobliecontroler.text,
                           email: _emailaddress.text,
@@ -189,7 +191,7 @@ class _RegistrationState extends State<Registration> {
   }
   var url="https://634e48b9f34e1ed826874c92.mockapi.io/rubel/users";
   void postData() async {
-    print("Hello");
+    //print("Hello");
     try {
        await http.post(Uri.parse(url), body: {
         "name": _namecontroller.text,

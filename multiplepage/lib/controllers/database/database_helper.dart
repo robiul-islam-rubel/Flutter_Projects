@@ -4,21 +4,18 @@ import 'package:path/path.dart';
 
 import '../../models/user_model.dart';
 class DBHelper {
-  //this is to initialize the SQLite database
-  //Database is from sqflite package
-  //as well as getDatabasesPath()
+
   static Future<Database> initDB() async {
+    print("Database created");
     var dbPath = await getDatabasesPath();
-    String path = join(dbPath, 'contacts.db');
+    String path = join(dbPath, 'contact.db');
     //this is to create database
     return await openDatabase(path, version: 1, onCreate: _onCreate);
   }
 
   //build _onCreate function
   static Future _onCreate(Database db, int version) async {
-    //this is to create table into database
-    //and the command is same as SQL statement
-    //you must use ''' and ''', for open and close
+
 
     final String sql = '''CREATE TABLE contacts(
       id INTEGER PRIMARY KEY ,
@@ -27,15 +24,13 @@ class DBHelper {
       mobile TEXT NOT NULL,
       password TEXT NOT NULL,
     )''';
-    //sqflite is only support num, string, and unit8List format
-    //please refer to package doc for more details
-    //print("Create");
+
     await db.execute(sql);
   }
 
   //build create function (insert)
   static Future<int> createContacts(Contact contact) async {
-    print("from Insert");
+
     Database db = await DBHelper.initDB();
     //create contact using insert()
     return await db.insert('contacts', contact.toJson());
@@ -56,8 +51,7 @@ class DBHelper {
   //build update function
   static Future<int> updateContacts(Contact contact) async {
     Database db = await DBHelper.initDB();
-    //update the existing contact
-    //according to its id
+
     return await db.update('contacts', contact.toJson(),
         where: 'id = ?', whereArgs: [contact.id]);
   }
@@ -65,8 +59,7 @@ class DBHelper {
   //build delete function
   static Future<int> deleteContacts(int id) async {
     Database db = await DBHelper.initDB();
-    //delete existing contact
-    //according to its id
+
     return await db.delete('contacts', where: 'id = ?', whereArgs: [id]);
   }
 }
