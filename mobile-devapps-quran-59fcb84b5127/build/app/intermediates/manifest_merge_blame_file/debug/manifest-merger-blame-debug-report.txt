@@ -1,0 +1,179 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.qrf"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="31" />
+10    <!--
+11         Flutter needs it to communicate with the running application
+12         to allow setting breakpoints, to provide hot reload, etc.
+13    -->
+14    <uses-permission android:name="android.permission.INTERNET" />
+14-->F:\practice\mobile-devapps-quran-59fcb84b5127\android\app\src\main\AndroidManifest.xml:4:5-67
+14-->F:\practice\mobile-devapps-quran-59fcb84b5127\android\app\src\main\AndroidManifest.xml:4:22-64
+15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+15-->F:\practice\mobile-devapps-quran-59fcb84b5127\android\app\src\main\AndroidManifest.xml:5:5-78
+15-->F:\practice\mobile-devapps-quran-59fcb84b5127\android\app\src\main\AndroidManifest.xml:5:22-76
+16
+17    <queries>
+17-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-11:15
+18        <intent>
+18-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-10:18
+19            <action android:name="android.support.customtabs.action.CustomTabsService" />
+19-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-90
+19-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:9:21-87
+20        </intent>
+21    </queries>
+22
+23    <application
+24        android:name="io.flutter.app.FlutterMultiDexApplication"
+25        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+25-->[androidx.core:core:1.8.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\8e86e615f21ac3758e97e94e18045107\core-1.8.0\AndroidManifest.xml:24:18-86
+26        android:debuggable="true"
+27        android:icon="@mipmap/launcher_icon"
+28        android:label="qrf"
+29        android:usesCleartextTraffic="true" >
+30        <activity
+31            android:name="com.example.qrf.MainActivity"
+32            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+33            android:exported="true"
+34            android:hardwareAccelerated="true"
+35            android:launchMode="singleTop"
+36            android:theme="@style/LaunchTheme"
+37            android:windowSoftInputMode="adjustResize" >
+38
+39            <!--
+40                 Specifies an Android theme to apply to this Activity as soon as
+41                 the Android process has started. This theme is visible to the user
+42                 while the Flutter UI initializes. After that, this theme continues
+43                 to determine the Window background behind the Flutter UI.
+44            -->
+45            <meta-data
+46                android:name="io.flutter.embedding.android.NormalTheme"
+47                android:resource="@style/NormalTheme" />
+48
+49            <intent-filter>
+50                <action android:name="android.intent.action.MAIN" />
+51
+52                <category android:name="android.intent.category.LAUNCHER" />
+53            </intent-filter>
+54        </activity>
+55        <!--
+56             Don't delete the meta-data below.
+57             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+58        -->
+59        <meta-data
+60            android:name="flutterEmbedding"
+61            android:value="2" />
+62
+63        <activity
+63-->[:url_launcher_android] F:\practice\mobile-devapps-quran-59fcb84b5127\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-11:74
+64            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+64-->[:url_launcher_android] F:\practice\mobile-devapps-quran-59fcb84b5127\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-74
+65            android:exported="false"
+65-->[:url_launcher_android] F:\practice\mobile-devapps-quran-59fcb84b5127\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:10:13-37
+66            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+66-->[:url_launcher_android] F:\practice\mobile-devapps-quran-59fcb84b5127\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-71
+67        <activity
+67-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:14:9-18:47
+68            android:name="com.pichillilorenzo.flutter_inappwebview.in_app_browser.InAppBrowserActivity"
+68-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-104
+69            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density"
+69-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-137
+70            android:exported="false"
+70-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:17:13-37
+71            android:theme="@style/AppTheme" />
+71-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:18:13-44
+72        <activity
+72-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:19:9-22:55
+73            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.ChromeCustomTabsActivity"
+73-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:20:13-112
+74            android:exported="false"
+74-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:21:13-37
+75            android:theme="@style/ThemeTransparent" />
+75-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:22:13-52
+76        <activity
+76-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:23:9-26:55
+77            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.TrustedWebActivity"
+77-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:24:13-106
+78            android:exported="false"
+78-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:25:13-37
+79            android:theme="@style/ThemeTransparent" />
+79-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:26:13-52
+80        <activity
+80-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:27:9-31:55
+81            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.ChromeCustomTabsActivitySingleInstance"
+81-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:28:13-126
+82            android:exported="false"
+82-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:29:13-37
+83            android:launchMode="singleInstance"
+83-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:30:13-48
+84            android:theme="@style/ThemeTransparent" />
+84-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:31:13-52
+85        <activity
+85-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:32:9-36:55
+86            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.TrustedWebActivitySingleInstance"
+86-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:33:13-120
+87            android:exported="false"
+87-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:34:13-37
+88            android:launchMode="singleInstance"
+88-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:35:13-48
+89            android:theme="@style/ThemeTransparent" />
+89-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:36:13-52
+90
+91        <receiver
+91-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:38:9-41:40
+92            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.ActionBroadcastReceiver"
+92-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:39:13-111
+93            android:enabled="true"
+93-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:40:13-35
+94            android:exported="false" />
+94-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:41:13-37
+95
+96        <meta-data
+96-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:43:9-45:36
+97            android:name="io.flutter.embedded_views_preview"
+97-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:44:13-61
+98            android:value="true" />
+98-->[:flutter_inappwebview] F:\practice\mobile-devapps-quran-59fcb84b5127\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:45:13-33
+99
+100        <uses-library
+100-->[androidx.window:window:1.0.0-beta04] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+101            android:name="androidx.window.extensions"
+101-->[androidx.window:window:1.0.0-beta04] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+102            android:required="false" />
+102-->[androidx.window:window:1.0.0-beta04] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+103        <uses-library
+103-->[androidx.window:window:1.0.0-beta04] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+104            android:name="androidx.window.sidecar"
+104-->[androidx.window:window:1.0.0-beta04] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+105            android:required="false" />
+105-->[androidx.window:window:1.0.0-beta04] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+106
+107        <provider
+107-->[androidx.emoji2:emoji2:1.2.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\c43ceae582431b7f6fd11e3d4300fe46\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+108            android:name="androidx.startup.InitializationProvider"
+108-->[androidx.emoji2:emoji2:1.2.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\c43ceae582431b7f6fd11e3d4300fe46\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
+109            android:authorities="com.example.qrf.androidx-startup"
+109-->[androidx.emoji2:emoji2:1.2.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\c43ceae582431b7f6fd11e3d4300fe46\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
+110            android:exported="false" >
+110-->[androidx.emoji2:emoji2:1.2.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\c43ceae582431b7f6fd11e3d4300fe46\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
+111            <meta-data
+111-->[androidx.emoji2:emoji2:1.2.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\c43ceae582431b7f6fd11e3d4300fe46\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+112                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+112-->[androidx.emoji2:emoji2:1.2.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\c43ceae582431b7f6fd11e3d4300fe46\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
+113                android:value="androidx.startup" />
+113-->[androidx.emoji2:emoji2:1.2.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\c43ceae582431b7f6fd11e3d4300fe46\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
+114            <meta-data
+114-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\3a18f9ac1ca497df1b4f90f5ed0fac93\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+115                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+115-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\3a18f9ac1ca497df1b4f90f5ed0fac93\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+116                android:value="androidx.startup" />
+116-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\3a18f9ac1ca497df1b4f90f5ed0fac93\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+117        </provider>
+118    </application>
+119
+120</manifest>
