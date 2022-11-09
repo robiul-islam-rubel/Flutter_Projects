@@ -6,6 +6,8 @@ import 'package:qrf/controllers/home_controller.dart';
 import 'package:qrf/routes/app_pages.dart';
 import 'package:qrf/utils/widgets.dart';
 
+import '../quran/home_page.dart';
+
 class CenterScreen extends GetView<HomeController> {
   const CenterScreen({Key? key}) : super(key: key);
 
@@ -290,7 +292,11 @@ class CenterScreen extends GetView<HomeController> {
                                   onTap: () {
                                     switch (index) {
                                       case 0:
-                                        Get.toNamed(AppPages.getSurahRoute());
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) =>  HomePage()),
+                                        );
+                                        //Get.toNamed(AppPages.getSurahRoute());
                                         break;
                                       case 1:
                                         Get.toNamed(AppPages.getHadisTypeRoute());

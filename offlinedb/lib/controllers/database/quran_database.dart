@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:nb_utils/nb_utils.dart';
 import 'package:offlinedb/model/mini_ayat_list.dart';
+import 'package:offlinedb/model/modified_ayat_list.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -71,7 +72,7 @@ class DBProvider {
               'sajda_number INTEGER,'
               'ruku INTEGER,'
               'ruku_number INTEGER,'
-              'suraId INTEGER  PRIMARY KEY,'
+              'suraId INTEGER ,'
               'suraNameAr TEXT,'
               'suraNameEn TEXT,'
               'suraNameBn TEXT,'
@@ -79,9 +80,6 @@ class DBProvider {
               'paraNameAr TEXT,'
               'paraNameEn TEXT,'
               'paraNameBn TEXT'
-
-
-
               ')');
           await db.execute('CREATE TABLE MiniAyat('
               'id INTEGER,'
@@ -90,13 +88,52 @@ class DBProvider {
               'name_bn TEXT'
 
               ')');
+          await db.execute('CREATE TABLE AyatWordBank('
+              'id INTEGER,'
+              'ayat_id INTEGER,'
+              'position INTEGER,'
+              'wId INTEGER,'
+              'name_ar TEXT,'
+              'name_en TEXT,'
+              'name_bn TEXT,'
+              'translate_en TEXT,'
+              'translate_bn TEXT,'
+              'rootWordId INTEGER,'
+              'rootWordNameAr TEXT,'
+              'rootWordNameEn TEXT,'
+              'rootWordNameBn TEXT,'
+              'subRootWordId INTEGER,'
+              'subRootWordNameAr TEXT,'
+              'subRootWordNameEn TEXT,'
+              'subRootWordNameBn TEXT'
 
 
+              ')');
+          await db.execute('CREATE TABLE AyatTafsir('
+              'id INTEGER,'
+              'ayat_id INTEGER,'
+              'tafsir_en TEXT,'
+              'tafsir_bn TEXT,'
+              'authorId INTEGER,'
+              'authorName TEXT'
+              ')');
         }
     );
   }
 
-  // Insert surah on database
+  //**************************create modified ayat *************************************************
+createmodifiedayat(modifiedAyat ayat) async
+{
+  final db=await database;
+  var batch = db?.batch();
+  batch?.insert("Ayat", ayat.toJson(),conflictAlgorithm: ConflictAlgorithm.ignore);
+  await batch?.commit(noResult: true);
+
+
+  // await db?.insert('Ayat',ayat.toJson(),conflictAlgorithm: ConflictAlgorithm.replace );
+
+}
+  // *****************************Insert surah on database***********************************************
   createSurah(Surah surah) async {
     //toast("afkjlaf");
     //await deleteAllEmployees();
@@ -128,6 +165,31 @@ class DBProvider {
     //toast("aaaaa");
     return res;
   }
+  //*************Create ayat word bank***************************
+  createayatwordBank(AyatWordBank ayatwordbank) async {
+    //toast("afkjlaf");
+    //await deleteAllEmployees();
+    //toast("Ami mini ayat insert a");
+    final db = await database;
+    final res = await db?.insert(
+        'AyatWordBank', ayatwordbank.toJson(), conflictAlgorithm: ConflictAlgorithm.replace);
+    //toast("aaaaa");
+    return res;
+  }
+  //*************************************Create tafsir********************************
+  createtafsir(AyatTafsir ayattafsir) async {
+    //toast("afkjlaf");
+    //await deleteAllEmployees();
+    //toast("Ami mini ayat insert a");
+    final db = await database;
+    final res = await db?.insert(
+        'AyatTafsir', ayattafsir.toJson(), conflictAlgorithm: ConflictAlgorithm.replace);
+    //toast("aaaaa");
+    return res;
+  }
+
+
+
 
   // *******************************Delete all surahs***********************************
   Future<int?> deleteSurah() async {

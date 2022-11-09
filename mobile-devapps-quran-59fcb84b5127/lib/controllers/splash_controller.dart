@@ -2,7 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nb_utils/nb_utils.dart';
 import 'package:qrf/routes/app_pages.dart';
+
+import '../providers/quran/ayat_provider.dart';
+import '../providers/quran/test_provider.dart';
+import 'database/quran_database.dart';
 
 class SplashController extends GetxController with GetTickerProviderStateMixin {
   /* HomeScreen */
@@ -29,6 +34,8 @@ class SplashController extends GetxController with GetTickerProviderStateMixin {
 
     streamController = StreamController();
     stream = streamController.stream;
+    post_to_db();
+   post_to_db_allayat();
     super.onInit();
   }
 
@@ -41,5 +48,15 @@ class SplashController extends GetxController with GetTickerProviderStateMixin {
   _redirectToPage() async {
     animationController.stop();
     Get.offAllNamed(AppPages.getHomeRoute());
+  }
+  void post_to_db() async {
+    final suraList = await SurahApiProvider().getallSurah();
+      await DBProvider.db.createSurah(suraList.toList());
+  }
+  void post_to_db_allayat() async
+  {
+    final _modifiedayat= await AyatProvider().getAllAyat();
+    await DBProvider.db.createmodifiedayat(_modifiedayat.toList());
+
   }
 }

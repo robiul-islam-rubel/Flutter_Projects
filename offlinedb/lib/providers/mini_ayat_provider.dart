@@ -27,6 +27,7 @@ class MiniAyatProvider{
         miniayatList=jsonDecode(jsonString);
 
         // toast(response.body.toString());
+        print(miniayatList);
         return  miniayatList.map((ayat) =>miniAyat.fromJson(ayat) ).toList();
 
         // return response.body;

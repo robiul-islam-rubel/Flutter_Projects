@@ -11,6 +11,7 @@ import 'package:qrf/utils/widgets.dart';
 import '../../controllers/ayat_controller.dart';
 import '../../controllers/ayat_controller.dart';
 import '../../controllers/database/quran_database.dart';
+import 'home_page.dart';
 
 class SurahScreen extends GetView<SurahController> {
     SurahScreen({Key? key}) : super(key: key);

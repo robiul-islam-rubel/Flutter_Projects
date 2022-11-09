@@ -28,15 +28,15 @@ import 'package:qrf/model/quran/surah_list.dart';
 import 'package:qrf/controllers/ayat_controller.dart';
 
 var isLoading=true;
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePage1 extends StatefulWidget {
+  const HomePage1({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomePage1> createState() => _HomePageState();
 }
 
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage1> {
   @override
   List<Surah> _surah=[];
   List<Ayat> ayatList=[];
@@ -44,23 +44,13 @@ class _HomePageState extends State<HomePage> {
 
   void initState() {
     // TODO: implement initState
-    post_surah_to_db();
+
     post_ayat_to_db();
     _refreshSurah();
 
     super.initState();
   }
-//**********************************insert surah to database******************************************
-  void post_surah_to_db() async {
-    var apiProvider = SurahApiProvider();
-    final suraList = await apiProvider.getallSurah();
-    suraList.forEach((element) {
-      // print(element.toJson().toString());
-      DBProvider.db.createSurah(element);
-    }
 
-    );
-  }
   //**********************Insert ayat to database***********************************
   void post_ayat_to_db() async
   {
@@ -79,8 +69,8 @@ class _HomePageState extends State<HomePage> {
     //toast("TestTest");
     ayatList.forEach((element) {
       //toast("ami ayat");
-      toast(element.toString());
-      DBProvider.db.createAyat(element);
+     // toast(element.toString());
+     // DBProvider.db.createAyat(element);
 
     });
 
@@ -321,7 +311,8 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ],
-        ));
+        ),);
+
 
 
 

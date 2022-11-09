@@ -5,6 +5,10 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:qrf/controllers/splash_controller.dart';
 import 'package:qrf/utils/color.dart';
 
+import '../controllers/database/quran_database.dart';
+import '../providers/quran/ayat_provider.dart';
+import '../providers/quran/test_provider.dart';
+
 class SplashScreen extends GetView<SplashController> {
   SplashScreen({Key? key}) : super(key: key);
 
@@ -169,4 +173,5 @@ class SplashScreen extends GetView<SplashController> {
       ),
     );
   }
+
 }

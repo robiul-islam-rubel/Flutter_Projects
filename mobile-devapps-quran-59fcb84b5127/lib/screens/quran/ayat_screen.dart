@@ -260,19 +260,11 @@ class AyatScreen extends GetView<AyatController> {
     };
     Uri uri = Uri.parse(endpointUrl);
     final finalUri = uri.replace(queryParameters: queryParams);
-   // print(finalUri);
-    final response = await client.get((finalUri), headers: header);
-    // print(response.body);
-    // toast(response.statusCode.toString());
-    var JsonData=jsonDecode(response.body);
-    /* print(JsonData['name_bn']);
-    print(JsonData['name_ar']);
-    print(JsonData['name_en']);*/
 
-   /* list.add(JsonData['name_bn']);
-    list.add(JsonData['name_ar']);
-    list.add(JsonData['name_en']);*/
-    //toast(list.toString());
+    final response = await client.get((finalUri), headers: header);
+
+    var JsonData=jsonDecode(response.body);
+
 
   }
 
@@ -299,16 +291,14 @@ class AyatScreen extends GetView<AyatController> {
                 padding: const EdgeInsets.only(left: 200.0),
                 child: IconButton(
                             onPressed: () {
-                              //toast("IconButton is pressed");
-                              //controller.isVisible=true.obs;
-                             // toast(controller.isVisible.toString());
+
                            showModalBottomSheet<void>(
                             context: context,
                             builder: (BuildContext context) {
                             return SizedBox(
                             height: 160,
                             child: Column(
-                            //mainAxisAlignment: MainAxisAlignment.center,
+
                             children:   <Widget>
                             [
 
@@ -341,11 +331,8 @@ class AyatScreen extends GetView<AyatController> {
                                  Padding(
                                    padding: const EdgeInsets.only(left: 15.0),
                                    child: Container(
-
                                      height: 60,
                                      width: 170,
-
-
                                      child: DropdownSearch<int>(
 
                                          items: controller.ayatNumbers,
@@ -440,371 +427,7 @@ class AyatScreen extends GetView<AyatController> {
               ),
 
           ],
-          /*
-          title: Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: Column(
-              children: [
-                Container(
-                  height: 30,
-                  width: 100,
 
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Container(
-                      height: 10,
-                      width: 300,
-                      child: DropdownSearch<Surah>(
-                        items: controller.surahList.toList(),
-                        itemAsString: (Surah surah) => surah.nameEn.toString(),
-                        dropdownDecoratorProps: DropDownDecoratorProps(
-                          dropdownSearchDecoration: InputDecoration(
-                            labelText: "Search",
-                            // hintText: "country in menu mode",
-                          ),
-
-                        ),
-                        onChanged: (surah) {
-                          _selectedsurah =surah?.id;
-                          controller.getAyatNumbers(surah!.totalAyatEn);
-                        },
-                        //selectedItem: "Brazil",
-                      ),
-
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 10,
-                  width: 300,
-
-                  child: Column(
-                    children: [
-                      DropdownSearch<int>(
-
-
-                          items: controller.ayatNumbers,
-                          dropdownDecoratorProps: DropDownDecoratorProps(
-                            dropdownSearchDecoration: InputDecoration(
-
-                              labelText: "Search",
-                              // hintText: "country in menu mode",
-                            ),
-                          ),
-                          onChanged: (_ayat)
-                          {
-                            _selectedayat=_ayat;
-                          }
-                        //selectedItem: "Brazil",
-                      ),
-
-
-                    ],
-
-                  ),
-                ),
-               *//* IconButton(
-                  onPressed: () {
-                    if (_selectedayat != 0 && _selectedsurah != 0) {
-                      toast(_selectedsurah.toString()+" "+_selectedayat.toString());
-                      Get.toNamed(
-                          AppPages.getTestRoute(),
-                          arguments: [
-                          {"surah_id": "${_selectedsurah}"},
-                          {"selected_ayatnumber": "${_selectedayat}"},
-
-                          ],
-                      );
-
-                      *//**//*Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const TestScreen()),
-
-                      );
-
-                       *//**//*
-                    }
-
-                    else
-                      {
-                        toast("Invalid Search");
-                      }
-                  },
-                  icon: Icon(Icons.search),
-
-                )*//*
-              ],
-            ),
-          ),
-
-        ),*/
-        /* title: Text('Al QURAN'.toUpperCase(),
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 15.0,
-              )),
-
-
-         // centerTitle: true,
-         // shape: AppbarShapeBorderSurahPage(),
-          leading: InkWell(
-            onTap: () {
-              Get.back();
-            },
-            child: Icon(Icons.arrow_back),
-          ),
-          actions: [
-            Container(
-              height: 50,
-              width: 50,
-              color: Colors.red,
-              child: DropdownSearch<Surah>(
-
-                items: controller.surahList.toList(),
-                itemAsString: (Surah surah)=>surah.nameEn.toString(),
-                dropdownDecoratorProps: DropDownDecoratorProps(
-                  dropdownSearchDecoration: InputDecoration(
-                    labelText: "Search",
-                    // hintText: "country in menu mode",
-                  ),
-                ),
-                onChanged: print,
-                //selectedItem: "Brazil",
-              ),
-            )
-
-          ],
-
-          title: Row(
-            mainAxisAlignment:  MainAxisAlignment.start,
-            children: [
-              DropdownSearch<Surah>(
-
-                items: controller.surahList.toList(),
-                itemAsString: (Surah surah)=>surah.nameEn.toString(),
-                dropdownDecoratorProps: DropDownDecoratorProps(
-                  dropdownSearchDecoration: InputDecoration(
-                    labelText: "Search",
-                   // hintText: "country in menu mode",
-                  ),
-                ),
-                onChanged: print,
-                //selectedItem: "Brazil",
-              )
-
-            ],
-          ),
-
-          ),
-          /*actions: [
-            Container(
-              child: DropdownSearch<String>.multiSelection(
-                items: ["Brazil", "Italia (Disabled)", "Tunisia", 'Canada'],
-                popupProps: PopupPropsMultiSelection.menu(
-                  showSelectedItems: true,
-                  disabledItemFn: (String s) => s.startsWith('I'),
-                ),
-                onChanged: print,
-                selectedItems: ["Brazil"],
-              ),
-            )
-
-
-          // Text("Ruabela")
-
-
-           /* IconButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (_) => new AlertDialog(
-                    backgroundColor: Colors.amber[100],
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                    content: Builder(
-                      builder: (context) {
-                        // Get available height and width of the build area of this widget. Make a choice depending on the size.
-                        var height = MediaQuery.of(context).size.height;
-                        var width = MediaQuery.of(context).size.width;
-
-                        return Container(
-                          height: height,
-                          width: width,
-                          child: Column(
-                            children: [
-                              DropdownButton<String>(
-                                value: dropdownValue,
-                                icon: Icon(Icons.arrow_drop_down),
-                                iconSize: 24,
-                                elevation: 16,
-                                style: TextStyle(color: Colors.red, fontSize: 18),
-                                underline: Container(
-                                  height: 2,
-                                  color: Colors.deepPurpleAccent,
-                                ),
-                                onChanged: (value){
-
-                                },
-                                items: spinnerItems.map<DropdownMenuItem<String>>((String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(value),
-                                  );
-                                }).toList(),
-                              ),
-                              SizedBox(
-                                width: 10,
-                                height: 10,
-                              ),
-
-                              SizedBox(
-                                width: 10,
-                                height: 10,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  var keyword = controller.suraNameController.text;
-                                  if (keyword.isEmptyOrNull) {
-                                    toast('Please enter a keyword');
-                                    return;
-                                  }
-
-                                  controller.suraNameController.clear();
-                                  controller.ayatNumberController.clear();
-                                  Get.toNamed(AppPages.getAyatSearchRoute(), arguments: [
-                                    {"keyword": keyword}
-                                  ]);
-                                },
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 50,
-                                  alignment: Alignment.center,
-                                  color: Colors.red,
-                                  child: Text("Search"),
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-
-                  /*actions: [
-                      Column(
-                        children: [
-                          Container(
-                            height: 40.0,
-                            width: double.infinity,
-                            child: TextFormField(
-                                controller: controller.suraNameController,
-                                textInputAction: TextInputAction.next,
-                                keyboardType: TextInputType.number,
-                                autofocus: false,
-                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                style: TextStyle(fontSize: 12.0, color: Colors.black),
-                                decoration: InputDecoration(
-                                  hintText: "Surah Number",
-                                  contentPadding: EdgeInsets.fromLTRB(10, 0, 5, 0),
-                                  labelStyle: TextStyle(color: black, fontSize: 15.0, fontWeight: FontWeight.normal),
-                                  hintStyle: TextStyle(color: black, fontSize: 15.0, fontWeight: FontWeight.normal),
-                                  filled: true,
-                                  fillColor: Colors.grey[400],
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                    borderSide: BorderSide(color: surahBgColor, width: 0.0),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                    borderSide: BorderSide(color: surahBgColor, width: 0.0),
-                                  ),
-                                )),
-                          ),
-                          SizedBox(
-                            width: 10,
-                            height: 10,
-                          ),
-                          Container(
-                            height: 40.0,
-                            width: double.infinity,
-                            child: TextFormField(
-                              controller: controller.ayatNumberController,
-                              textInputAction: TextInputAction.next,
-                              keyboardType: TextInputType.number,
-                              autofocus: false,
-                              autovalidateMode: AutovalidateMode.onUserInteraction,
-                              style: TextStyle(fontSize: 12.0, color: Colors.black),
-                              decoration: InputDecoration(
-                                hintText: "Ayat Number",
-                                contentPadding: EdgeInsets.fromLTRB(10, 0, 5, 0),
-                                labelStyle: TextStyle(color: black, fontSize: 15.0, fontWeight: FontWeight.normal),
-                                hintStyle: TextStyle(color: black, fontSize: 15.0, fontWeight: FontWeight.normal),
-                                filled: true,
-                                fillColor: Colors.grey[400],
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  borderSide: BorderSide(color: surahBgColor, width: 0.0),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  borderSide: BorderSide(color: surahBgColor, width: 0.0),
-                                ),
-                              ),),
-                          ),
-                          SizedBox(
-                            width: 10,
-                            height: 10,
-                          ),
-                          InkWell(
-
-                            onTap: () {
-                              var keyword = controller.suraNameController.text;
-                              if (keyword.isEmptyOrNull) {
-                                toast('Please enter a keyword');
-                                return;
-                              }
-
-                              controller.suraNameController.clear();
-                              controller.ayatNumberController.clear();
-                              Get.toNamed(AppPages.getAyatSearchRoute(), arguments: [
-                                {"keyword": keyword}
-                              ]);
-                            },
-                            child: Image.asset('assets/images/search_icon.png'),
-                          ),
-                        ],
-                      ),
-                    ],*/
-                );
-              },
-              icon: Icon(
-                Icons.search,
-                color: Colors.white,
-              ),
-
-               */
-
-
-
-
-
-          ],
-        ),
-
-
-           */
-        //appBar: CustomAppBarSurahPage(title: 'Al Quran'.toUpperCase(), height: 80.0),
-        /* appBar:  AppBar(
-            title: Text('My App'),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(15),
-              ),
-            ),
-          ),*/
-
-
-          */
       ),
         ),
 
@@ -822,177 +445,7 @@ class AyatScreen extends GetView<AyatController> {
 
             Column(
               children: [
-                /* Container(
-                    height: 60.0,
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 30.0),
-                      child: Stack(
-                        children: <Widget>[
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: InkWell(
-                              onTap: () {
-                                Get.back();
-                              },
-                              child: Padding(
-                                padding: EdgeInsets.only(left: 10.0),
-                                child: Icon(
-                                  Icons.arrow_back_ios_new,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Center(
-                            child: Text(
-                              'Al Quran'.toUpperCase(),
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15.0,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ), */
-              /*  Obx( ()=>
-                    Visibility(
-                    visible:controller.isVisible.value,
-                    child: Container(
-                      height: 130.0,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 10.0),
-                        child: Column(
-                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                                        Container(
-                                          child: DropdownSearch<Surah>(
-                                          items: controller.surahList.toList(),
-                                          itemAsString: (Surah surah) => surah.nameEn.toString(),
-                                          dropdownDecoratorProps: DropDownDecoratorProps(
-                                          dropdownSearchDecoration: InputDecoration(
-                                          labelText: "Search",
-                                          // hintText: "country in menu mode",
-                                          ),
 
-                                          ),
-                                          onChanged: (surah) {
-                                          _selectedsurah =surah?.id;
-                                          controller.getAyatNumbers(surah!.totalAyatEn);
-                                          },
-                                          //selectedItem: "Brazil",
-                                          ),
-                                        ),
-
-
-
-                                   Container(
-                                     child: DropdownSearch<int>(
-
-                                items: controller.ayatNumbers,
-                                dropdownDecoratorProps: DropDownDecoratorProps(
-                                  dropdownSearchDecoration: InputDecoration(
-
-                                      labelText: "Search",
-                                      // hintText: "country in menu mode",
-                                  ),
-                                ),
-                                onChanged: (_ayat)
-                                {
-                                  _selectedayat=_ayat;
-                                }
-                              //selectedItem: "Brazil",
-                            ),
-                                   ),
-
-
-
-
-
-                            *//*InkWell(
-                                onTap: () {
-                                  controller.showPopupMenu();
-                                },
-                                child: Image.asset('assets/images/quran_share_icon.png'),
-                              ),
-                              Container(
-                                height: 40.0,
-                                width: 160.0,
-                                child: TextFormField(
-                                    controller: controller.suraNameController,
-                                    textInputAction: TextInputAction.next,
-                                    keyboardType: TextInputType.text,
-                                    autofocus: false,
-                                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                                    style: TextStyle(fontSize: 12.0, color: Colors.black),
-                                    decoration: InputDecoration(
-                                      hintText: "Surah Name",
-                                      contentPadding: EdgeInsets.fromLTRB(10, 0, 5, 0),
-                                      labelStyle: TextStyle(color: black, fontSize: 15.0, fontWeight: FontWeight.normal),
-                                      hintStyle: TextStyle(color: black, fontSize: 15.0, fontWeight: FontWeight.normal),
-                                      filled: true,
-                                      fillColor: Colors.grey[400],
-                                      enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(20.0),
-                                        borderSide: BorderSide(color: surahBgColor, width: 0.0),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(20.0),
-                                        borderSide: BorderSide(color: surahBgColor, width: 0.0),
-                                      ),
-                                    )),
-                              ),
-                              Container(
-                                height: 40.0,
-                                width: 120.0,
-                                child: TextFormField(
-                                    controller: controller.ayatNumberController,
-                                    textInputAction: TextInputAction.next,
-                                    keyboardType: TextInputType.number,
-                                    autofocus: false,
-                                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                                    style: TextStyle(fontSize: 12.0, color: Colors.black),
-                                    decoration: InputDecoration(
-                                      hintText: "Ayat Number",
-                                      contentPadding: EdgeInsets.fromLTRB(10, 0, 5, 0),
-                                      labelStyle: TextStyle(color: black, fontSize: 15.0, fontWeight: FontWeight.normal),
-                                      hintStyle: TextStyle(color: black, fontSize: 15.0, fontWeight: FontWeight.normal),
-                                      filled: true,
-                                      fillColor: Colors.grey[400],
-                                      enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(20.0),
-                                        borderSide: BorderSide(color: surahBgColor, width: 0.0),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(20.0),
-                                        borderSide: BorderSide(color: surahBgColor, width: 0.0),
-                                      ),
-                                    )),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  var keyword = controller.suraNameController.text;
-                                  if (keyword.isEmptyOrNull) {
-                                    toast('Please enter a keyword');
-                                    return;
-                                  }
-                                  controller.suraNameController.clear();
-                                  controller.ayatNumberController.clear();
-                                  Get.toNamed(AppPages.getAyatSearchRoute(), arguments: [
-                                    {"keyword": keyword}
-                                  ]);
-                                },
-                                child: Image.asset('assets/images/search_icon.png'),
-                              ),*//*
-                          ],
-                        ),
-                      ),
-                      width: double.infinity,
-                    ),
-                  ),
-                ),*/
                 10.height,
                 Expanded(
                   child: Stack(
@@ -1968,11 +1421,11 @@ class AyatScreen extends GetView<AyatController> {
                 Row(
                   children: [
                     10.width,
-                    Text('${ayat.suraId}'+"TestsuraId"),
+                    Text('${ayat.suraId}'),
                     2.width,
                     Text(":"),
                     2.width,
-                    Text('${ayat.ayaNumber}+"TestAyatNumber'),
+                    Text('${ayat.ayaNumber}'),
                     10.width,
                     InkWell(
                       onTap: () {
@@ -1997,72 +1450,12 @@ class AyatScreen extends GetView<AyatController> {
                   ],
                 ),
 
-                /* Flexible(
-                                                              child: Container(
-                                                                alignment: Alignment
-                                                                    .centerRight,
-                                                                child: Wrap(
-                                                                  crossAxisAlignment:
-                                                                      WrapCrossAlignment
-                                                                          .end,
-                                                                  alignment:
-                                                                      WrapAlignment
-                                                                          .end,
-                                                                  runAlignment:
-                                                                      WrapAlignment
-                                                                          .end,
-                                                                  children: List.generate(
-                                                                      ayat.ayatWordBank
-                                                                              ?.length ??
-                                                                          0,
-                                                                      (index) {
-                                                                    var wordList = controller
-                                                                        .ayatList[
-                                                                            position]
-                                                                        .ayatWordBank;
-                                                                    List<AyatWordBank>
-                                                                        reversedWordList =
-                                                                        wordList!
-                                                                            .reversed
-                                                                            .toList();
-                                                                    AyatWordBank
-                                                                        word =
-                                                                        reversedWordList[
-                                                                            index];
-                                                                    return InkWell(
-                                                                      onTap:
-                                                                          () {},
-                                                                      child:
-                                                                          Container(
-                                                                        margin: EdgeInsets.only(
-                                                                            right:
-                                                                                3.0),
-                                                                        child:
-                                                                            Html(
-                                                                          data: word
-                                                                              .nameAr,
-                                                                          shrinkWrap:
-                                                                              true,
-                                                                          style: {
-                                                                            "p": Style(
-                                                                                fontWeight: FontWeight.bold,
-                                                                                fontSize: FontSize.rem(1.6),
-                                                                                textAlign: TextAlign.center,
-                                                                                whiteSpace: WhiteSpace.NORMAL,
-                                                                                display: Display.BLOCK)
-                                                                          },
-                                                                        ),
-                                                                      ),
-                                                                    );
-                                                                  }),
-                                                                ),
-                                                              ),
-                                                            ), */
+
                 Container(
                   alignment: Alignment.centerRight,
                   margin: EdgeInsets.only(right: 3.0),
                   child: Html(
-                    data: ayat.nameAr!+"TestAr",
+                    data: ayat.nameAr!,
                     shrinkWrap: true,
                     style: {
                       "p": Style(
@@ -2079,7 +1472,7 @@ class AyatScreen extends GetView<AyatController> {
                 Container(
                     padding: EdgeInsets.only(left: 5.0, bottom: 10.0),
                     child: Text(
-                      '${ayat.nameEn}'+"TestEn",
+                      '${ayat.nameEn}',
                       style: TextStyle(
                           fontSize: 17.0, fontWeight: FontWeight.w400),
                     )),
